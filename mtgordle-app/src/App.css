@@ -1,0 +1,172 @@
+
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.search-bar{
+  margin-top: 2.5%;
+  padding: 15px;
+  border-radius: 10px;
+  width: 30%;
+}
+
+.search-area {
+  margin-bottom: 2.5em;
+  display: inline-block;
+  width: 40%;
+  height: 15%;
+}
+
+.top-nav {
+  width: 100%;  
+  text-align: center;
+}
+
+.icon {
+  height: 30px;
+  width: 30px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 0.3em;
+}
+
+.icon:hover,
+.icon:focus {
+  cursor: pointer;
+}
+
+.title {
+  display: inline-block;
+  color: white;
+  
+  
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  font-size: 2.4em;
+}
+
+.header {
+  display: inline-block;
+  color: white;
+  
+  margin-top: 0.3em;
+  margin-bottom: 0.3em;
+  font-size: 2.0em;
+}
+
+
+.icon-group-left {
+  margin-right: 30em;
+  display: inline-block;
+}
+
+.icon-group-right {
+  margin-left: 30em;
+  display: inline-block;
+}
+
+.current-guesses {
+  display: inline-block;
+  margin-left:5em;
+}
+
+.card-info {
+  display: inline-block;
+  margin-right:5em;
+  
+}
+
+.submit-button {
+  color: darkcyan;
+  border-radius: 10px;
+  margin-left: 2em;
+  padding: 1em;
+}
+
+.submit-button:hover {
+  background-color: lavender;
+}
+
+.submit-button:active {
+  background-color: plum;
+}
+
+.row {
+  border: .1em;
+  border-color: white;
+  border-style: solid;
+  padding: .8em;
+  width: 25em;
+  margin: 1em;
+  height: 2.5em ;
+}
+
+.image-row {
+  padding: .8em;
+  width: 25em;
+  margin: 1em;
+  height: 2.5em ;
+}
+
+.text {
+  font-size: 1.2em;
+  color: white;
+  text-align: center;
+  display: table-cell;
+}
+
+.image-text {
+  font-size: 1.2em;
+  color: white;
+  text-align: left;
+  display: table-cell;
+}
+
+.image-text:hover,
+  .image-text:focus {
+    color: darkslategray;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+.table {
+  display: table;
+}
+
+
