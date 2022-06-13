@@ -23,6 +23,7 @@ function InfoButton(props) {
                         <p>A respectful homeage to <a className="popup-links-text" href="https://www.nytimes.com/games/wordle/index.html">Wordle</a> and
                             Worlde-like clones, such as <a className="popup-links-text" href="https://www.heardle.app/">Heardle</a></p>
                         <p>Each day, we generate a random Magic the Gathering card. Guess the card, with more hints being provided per guess!</p>
+                        <p>Note: Still in development!</p>
                     </div>
                 </>}
                 handleClose={togglePopup}

@@ -8,11 +8,9 @@ import { useRef } from 'react';
 import { toast, ToastContainer } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
 function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [items, setItems] = useState([]);
   const [correctCardInfo, setCorrectCardInfo] = useState([]);
 
   const correctCard = "Counterspell";
@@ -26,7 +24,6 @@ function App() {
           const cardInfo = [result.set_name, result.type_line, result.mana_cost,
           result.flavor_text, result.oracle_text, result.image_uris.art_crop]
           setCorrectCardInfo(cardInfo);
-          //const cardInfo = [...guesses, results.mana]
         },
         (error) => {
           setIsLoaded(true);
@@ -43,34 +40,84 @@ function App() {
     return (
       <div>
         <TopNav />
-        <Game cards={items} correctCard={correctCard} cardInfo={correctCardInfo} />
+        <Game correctCard={correctCard} cardInfo={correctCardInfo} />
       </div>
     );
   }
 }
 
 function Game(props) {
-  const [guesses, setGuesses] = useState([]);
+  // Stored state
+  const [guesses, setGuesses] = useState(() => {
+    const saved = localStorage.getItem('guesses')
+    const initialValue = JSON.parse(saved);
+    return initialValue || [];
+  });
+  const [gameOver, setGameOver] = useState(
+    localStorage.getItem('game-over') === 'true'
+  );
+  const [gameWin, setGameWin] = useState(
+    localStorage.getItem('game-win') === 'true'
+  );
+  const [numOfGuesses, setNumOfGuesses] = useState(() => {
+    const saved = localStorage.getItem('num-guesses')
+    const initialValue = JSON.parse(saved);
+    return initialValue || 0;
+  });
+
+  // State
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  // State related to search-bar
   const [items, setItems] = useState([]);
   const [inputValue, setValue] = useState('');
   const [selectedValue, setSelectedValue] = useState(null);
   const [searchValue, setSearchValue] = useState('');
-  const [gameOver, setGameOver] = useState(false);
-  const [gameWin, setGameWin] = useState(false);
-  const [isOpen, setIsOpen] = useState(false);
   const searchInput = useRef(null);
-  const [numOfGuesses, setNumOfGuesses] = useState(0);
 
+  // Updating local storage for state changes
+  useEffect(() => {
+    localStorage.setItem('num-guesses', numOfGuesses);
+  }, [numOfGuesses]);
+
+  useEffect(() => {
+    localStorage.setItem('game-win', gameWin);
+  }, [gameWin]);
+
+  useEffect(() => {
+    localStorage.setItem('game-over', gameOver);
+  }, [gameOver]);
+
+  useEffect(() => {
+    localStorage.setItem('guesses', JSON.stringify(guesses));
+  }, [guesses]);
+
+  useEffect(() => {
+    var now = new Date();
+    var resetTime = localStorage.getItem('reset-time');
+    if (resetTime === null) {
+      // If they've never visited the site before
+      now.setUTCHours(24,0,0,0);
+      localStorage.setItem('reset-time', now)
+    } else {
+      if (now > resetTime) {
+        console.log("Resetting the local storage");
+        localStorage.clear()
+        now.setUTCHours(24,0,0,0);
+        localStorage.setItem('reset-time', now);
+      }
+    }
+  }, []);
 
   // When the submit button is clicked
   async function handleSubmit() {
-    if(gameOver)
+    if (gameOver)
       return;
     var err = null;
     var results = null;
-    if(selectedValue !== undefined) {
+    if (selectedValue !== undefined) {
       results = selectedValue;
     }
     else if (searchValue !== "") {
@@ -112,8 +159,12 @@ function Game(props) {
       if (finalArray.length >= 6) {
         loseGame();
       }
+
+      // Update state and cookies
       setGuesses(finalArray);
       setNumOfGuesses(finalArray.length);
+      //localStorage.setItem('guesses', )
+
 
       // Check win condition
       if (results.name === props.correctCard) {
@@ -124,17 +175,17 @@ function Game(props) {
 
   function loseGame() {
     setGameOver(true);
-    setIsOpen(true);
+    setIsPopupOpen(true);
   }
 
   function winGame() {
     setGameWin(true);
     setGameOver(true);
-    setIsOpen(true);
+    setIsPopupOpen(true);
   }
 
   const togglePopup = () => {
-    setIsOpen(!isOpen);
+    setIsPopupOpen(!isPopupOpen);
   }
 
   // Handle input change event
@@ -142,9 +193,9 @@ function Game(props) {
     if (action.action !== "input-blur" && action.action !== "menu-close") {
       setValue(value);
       setSearchValue(value);
-    } else 
-        return;
-    
+    } else
+      return;
+
 
     fetch(`https://api.scryfall.com/cards/search?order=name&q=${inputValue}`)
       .then(res => res.json())
@@ -169,7 +220,7 @@ function Game(props) {
 
 
   function handleClick() {
-    if(selectedValue && selectedValue.name)
+    if (selectedValue && selectedValue.name)
       setValue(selectedValue.name);
     setSelectedValue("");
   }
@@ -190,7 +241,7 @@ function Game(props) {
           isDisabled={gameOver}
           ref={searchInput}
           inputValue={inputValue}
-          noOptionsMessage={() => 'Start typing to search...'}
+          noOptionsMessage={() => 'Searching...'}
           loadingMessage={() => 'Loading...'}
         />
         <button className="submit-button" onClick={handleSubmit}>Submit</button>
@@ -201,14 +252,14 @@ function Game(props) {
       <div className="current-guesses">
         <CurrentGuesses guesses={guesses} />
       </div>
-      {gameOver && isOpen && !gameWin && <SmallPopup
+      {gameOver && isPopupOpen && !gameWin && <SmallPopup
         content={<>
           <b className="popup-title">Better luck next time!</b>
           <p className="popup-text">The correct answer was {props.correctCard}</p>
         </>}
         handleClose={togglePopup}
       />}
-      {gameOver && isOpen && gameWin && <SmallPopup
+      {gameOver && isPopupOpen && gameWin && <SmallPopup
         content={<>
           <b className="popup-title">Awesome job!</b>
           <p className="popup-text">The correct answer was {props.correctCard}</p>
@@ -240,7 +291,7 @@ function TopNav(props) {
 }
 
 function Title(props) {
-  return <h1 className="title">MTGurdle</h1>
+  return <h1 className="title">MTGordle</h1>
 }
 
 
