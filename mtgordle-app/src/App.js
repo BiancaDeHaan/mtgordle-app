@@ -140,7 +140,7 @@ function Game(props) {
       setSelectedValue(null);
 
       // Create toast to notify user
-      toast('🦄 Invalid card name was submitted', {
+      toast('Invalid card name was submitted', {
         position: "top-right",
         autoClose: 3000,
         closeOnClick: true,
@@ -164,7 +164,6 @@ function Game(props) {
       setGuesses(finalArray);
       setNumOfGuesses(finalArray.length);
       //localStorage.setItem('guesses', )
-
 
       // Check win condition
       if (results.name === props.correctCard) {
@@ -196,6 +195,8 @@ function Game(props) {
     } else
       return;
 
+    if(inputValue === "")
+      return;
 
     fetch(`https://api.scryfall.com/cards/search?order=name&q=${inputValue}`)
       .then(res => res.json())
@@ -300,7 +301,7 @@ function CardInfo(props) {
   function renderInfo(label, text) {
     return (
       <div className="row">
-        <div className="text">{label + " " + text}</div>
+        <div className="text"><strong>{label}</strong>{" " + text}</div>
       </div>
     )
   }
@@ -344,7 +345,7 @@ function CardInfo(props) {
       {renderInfo("Set:", set)}
       {renderInfo("Card type:", type)}
       {renderInfo("CMC:", mana)}
-      {renderInfo("Flavor text", flavor)}
+      {renderInfo("Flavor text:", flavor)}
       {renderInfo("Card text:", text)}
       {props.numGuesses >= 5
         ? <div className="row">
