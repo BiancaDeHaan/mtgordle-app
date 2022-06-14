@@ -117,11 +117,12 @@ function Game(props) {
       return;
     var err = null;
     var results = null;
-    if (selectedValue !== undefined) {
+
+    if (selectedValue !== undefined && selectedValue !== "") {
       results = selectedValue;
     }
     else if (searchValue !== "") {
-      await fetch(`https://api.scryfall.com/cards/named?exact=${searchValue}`)
+      await fetch(`https://api.scryfall.com/cards/named?exact=${searchValue.replace(' ', '+')}`)
         .then(res => res.json())
         .then(
           (result) => {
