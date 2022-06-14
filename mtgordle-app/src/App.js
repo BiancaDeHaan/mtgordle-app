@@ -99,13 +99,13 @@ function Game(props) {
     var resetTime = localStorage.getItem('reset-time');
     if (resetTime === null) {
       // If they've never visited the site before
-      now.setUTCHours(24,0,0,0);
+      now.setUTCHours(24, 0, 0, 0);
       localStorage.setItem('reset-time', now)
     } else {
       if (now > resetTime) {
         console.log("Resetting the local storage");
         localStorage.clear()
-        now.setUTCHours(24,0,0,0);
+        now.setUTCHours(24, 0, 0, 0);
         localStorage.setItem('reset-time', now);
       }
     }
@@ -175,12 +175,40 @@ function Game(props) {
   function loseGame() {
     setGameOver(true);
     setIsPopupOpen(true);
+    // Updating statistics
+    updateTotalGames();
+
   }
 
   function winGame() {
     setGameWin(true);
     setGameOver(true);
     setIsPopupOpen(true);
+    updateTotalGames();
+    updateTotalWins();
+    updateStats();
+  }
+
+  function updateTotalGames() {
+    var initialValue = localStorage.getItem('total-games');
+    if (initialValue === null)
+      initialValue = 0;
+    localStorage.setItem('total-games', JSON.stringify(initialValue + 1));
+  }
+
+  function updateTotalWins() {
+    var initialValue = localStorage.getItem('total-wins');
+    if (initialValue === null)
+      initialValue = 0;
+    localStorage.setItem('total-wins', JSON.stringify(initialValue + 1));
+  }
+
+  function updateStats() {
+    var initialValue = JSON.parse(localStorage.getItem('chart-data'));
+    if (initialValue === null)
+      initialValue = [0, 0, 0, 0, 0, 0];
+    initialValue[numOfGuesses] = initialValue[numOfGuesses] + 1;
+    localStorage.setItem('chart-data', JSON.stringify(initialValue));
   }
 
   const togglePopup = () => {
@@ -195,7 +223,7 @@ function Game(props) {
     } else
       return;
 
-    if(inputValue === "")
+    if (inputValue === "")
       return;
 
     fetch(`https://api.scryfall.com/cards/search?order=name&q=${inputValue}`)
@@ -305,6 +333,7 @@ function CardInfo(props) {
       </div>
     )
   }
+
 
   function showImage() {
     setIsOpen(true);
