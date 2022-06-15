@@ -130,7 +130,8 @@
   padding: .8em;
   width: 25em;
   margin: 1em;
-  height: 2.5em ;
+  height: auto ;
+  min-height: 2.5em;
   background-color: #30343d;
   text-align: left;
 }

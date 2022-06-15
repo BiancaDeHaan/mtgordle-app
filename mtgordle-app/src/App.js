@@ -16,13 +16,20 @@ function App() {
   const [correctCard, setCorrectCard] = useState("");
 
   useEffect(() => {
-    const fetchData = async () => {
-      var data = await fetch("/card")
-      .then((res) => res.json());
+    async function fetchData() {
+      let data = await fetch("/card");
+       data = await data.json();
 
-      setCorrectCard(data.card_name.card_name);
+       const cardName = data.card_name.card_name;
+       // Interestingly, this doesn't take effect until after the useEffect()
+       setCorrectCard(cardName); 
+       /*
+      console.log(correctCard);
+      console.log(cardName);
+      */
 
-      fetch(`https://api.scryfall.com/cards/named?exact=${correctCard}`)
+
+      fetch(`https://api.scryfall.com/cards/named?exact=${cardName}`)
       .then(res => res.json())
       .then(
         (result) => {
