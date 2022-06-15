@@ -297,11 +297,13 @@ function Game(props) {
         />
         <button className="submit-button" onClick={handleSubmit}>Submit</button>
       </div>
+      <div>
       <div className="card-info">
         <CardInfo cardInfo={props.cardInfo} numGuesses={numOfGuesses} />
       </div>
       <div className="current-guesses">
         <CurrentGuesses guesses={guesses} />
+      </div>
       </div>
       {gameOver && isPopupOpen && !gameWin && <SmallPopup
         content={<>
