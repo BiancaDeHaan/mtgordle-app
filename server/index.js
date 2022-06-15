@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require("express");
-import schedule from 'node-schedule'
+//import schedule from 'node-schedule'
+const schedule = require('node-schedule');
 
 
 const PORT = process.env.PORT || 3001;
