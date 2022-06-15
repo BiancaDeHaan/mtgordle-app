@@ -8,12 +8,12 @@
     "start": "node server/index.js",
     "build": "cd mtgordle-app && npm install && npm run build"
   },
-  
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.1"
+    "express": "^4.18.1",
+    "node-schedule": "^2.1.0"
   },
   "engines": {
     "node": "18.2.0"

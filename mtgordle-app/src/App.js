@@ -29,7 +29,19 @@ function App() {
           setIsLoaded(true);
           setError(error);
         }
+      );
+      fetch("/card")
+      .then((res) => res.json())
+      .then((data) => console.log(data));
+
+      fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
+      .then(res => res.json()) 
+      .then(
+        (result) => {
+          console.log(result.name);
+        }
       )
+      
   }, [])
 
   if (error) {
@@ -97,16 +109,20 @@ function Game(props) {
   useEffect(() => {
     var now = new Date();
     var resetTime = localStorage.getItem('reset-time');
+    console.log(Date.parse(now) > Date.parse(resetTime));
     if (resetTime === null) {
       // If they've never visited the site before
-      now.setUTCHours(24, 0, 0, 0);
+      now.setUTCHours(28, 0, 0, 0);
       localStorage.setItem('reset-time', now)
     } else {
-      if (now > resetTime) {
-        console.log("Resetting the local storage");
-        localStorage.clear()
-        now.setUTCHours(24, 0, 0, 0);
-        localStorage.setItem('reset-time', now);
+      if (Date.parse(now) > Date.parse(resetTime)) {
+
+        localStorage.removeItem('guesses');
+        localStorage.removeItem('game-win');
+        localStorage.removeItem('game-over');
+        localStorage.removeItem('num-guesses');
+        now.setUTCHours(28, 0, 0, 0);
+        localStorage.setItem('reset-time', JSON.stringify(now));
       }
     }
   }, []);
@@ -397,7 +413,7 @@ function CurrentGuesses(props) {
   function renderRow(previousGuess) {
 
     return (
-      <div className="row">
+      <div className="row row-guesses">
         <div className="text">{previousGuess}</div>
       </div>
     )

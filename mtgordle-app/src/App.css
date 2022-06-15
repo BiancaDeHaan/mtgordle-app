@@ -131,6 +131,12 @@
   width: 25em;
   margin: 1em;
   height: 2.5em ;
+  background-color: #30343d;
+  text-align: left;
+}
+
+.row-guesses {
+  text-align: center;
 }
 
 .image-row {
@@ -143,8 +149,6 @@
 .text {
   font-size: 1.2em;
   color: white;
-  text-align: center;
-  display: table-cell;
 }
 
 .image-text {
