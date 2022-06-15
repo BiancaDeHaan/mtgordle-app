@@ -12,16 +12,15 @@ function App() {
   const [error, setError] = useState(null);
   const [isLoaded, setIsLoaded] = useState(false);
   const [correctCardInfo, setCorrectCardInfo] = useState([]);
-  const [correctCard, setCorrectCard] = useState("Counterspell");
+  //var correctCard = "Counterspell";
+  const [correctCard, setCorrectCard] = useState("");
 
   useEffect(() => {
     const fetchData = async () => {
-      await fetch("/card")
-      .then((res) => res.json())
-      .then((data) => {setCorrectCard(data.card_name.card_name);
-      });
+      var data = await fetch("/card")
+      .then((res) => res.json());
 
-      console.log(correctCard);
+      setCorrectCard(data.card_name.card_name);
 
       fetch(`https://api.scryfall.com/cards/named?exact=${correctCard}`)
       .then(res => res.json())
@@ -38,6 +37,7 @@ function App() {
         }
       );
     }
+
     fetchData();
       
   }, [])
