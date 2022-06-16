@@ -27,8 +27,6 @@ function App() {
       console.log(correctCard);
       console.log(cardName);
       */
-
-
       fetch(`https://api.scryfall.com/cards/named?exact=${cardName}`)
       .then(res => res.json())
       .then(
@@ -130,6 +128,7 @@ function Game(props) {
         localStorage.setItem('reset-time', JSON.stringify(now));
       }
     }
+
   }, []);
 
   // When the submit button is clicked
@@ -139,7 +138,12 @@ function Game(props) {
     var err = null;
     var results = null;
 
-    if (selectedValue !== undefined && selectedValue !== "") {
+    console.log(selectedValue);
+    console.log(searchValue);
+    console.log(inputValue);
+
+    if (selectedValue !== undefined && selectedValue !== "" && selectedValue != null) {
+      console.log("test");
       results = selectedValue;
     }
     else if (searchValue !== "") {
@@ -268,7 +272,6 @@ function Game(props) {
     setSearchValue(value.name);
     searchInput.current.blur();
   }
-
 
   function handleClick() {
     if (selectedValue && selectedValue.name)

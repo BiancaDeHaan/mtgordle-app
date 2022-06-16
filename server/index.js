@@ -31,6 +31,7 @@ app.get('*', (req, res) => {
     res.sendFile(path.resolve(__dirname, '../mtgordle-app/build', 'index.html'));
   });
 
+
   schedule.scheduleJob('0 0 * * *', () => { 
     // run everyday at midnight
     fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
@@ -42,6 +43,8 @@ app.get('*', (req, res) => {
       )
   }) 
 
-
+const job = schedule.scheduleJob('40 * * * *', function(){
+  console.log('The answer to life, the universe, and everything!');
+});
   
  
