@@ -32,10 +32,9 @@ app.listen(PORT, () => {
       .then(
         (result) => {
           card_name = result.name;
+          console.log("Changing the card name!");
         }
-      );
-      console.log("Resetting the card of the day!");
-  }) 
+      )  }) 
 
 });
 
