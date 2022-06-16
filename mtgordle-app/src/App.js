@@ -406,10 +406,10 @@ function CardInfo(props) {
       {renderInfo("CMC:", mana)}
       {renderInfo("Flavor text:", flavor)}
       {renderInfo("Card text:", text)}
-      {props.numGuesses >= 5
+      {(props.numGuesses >= 5 || props.gameOver===true)
         ? <div className="row">
           <div className="image-text" onClick={showImage}>Show image</div>
-          {(props.numGuesses >= 0 || props.gameOver===true) && isOpen && <Popup
+          {isOpen && <Popup
             content={<>
               <img src={image} alt="MTG card"></img>
             </>}
