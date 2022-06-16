@@ -3,7 +3,7 @@ function CurrentGuesses(props) {
   
       return (
         <div className="row row-guesses">
-          <div className="text">{previousGuess}</div>
+          <div className="text">{previousGuess + " "}</div>
         </div>
       )
     }
