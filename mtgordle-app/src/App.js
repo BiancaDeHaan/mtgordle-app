@@ -138,10 +138,6 @@ function Game(props) {
     var err = null;
     var results = null;
 
-    console.log(selectedValue);
-    console.log(searchValue);
-    console.log(inputValue);
-
     if (selectedValue !== undefined && selectedValue !== "" && selectedValue != null) {
       console.log("test");
       results = selectedValue;

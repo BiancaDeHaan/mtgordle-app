@@ -24,6 +24,10 @@ app.get("/card", (req, res) => {
 
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
+
+  const job = schedule.scheduleJob('40 * * * *', function(){
+    console.log('The answer to life, the universe, and everything... ugh!');
+  });
 });
 
 // All other GET requests not handled before will return our React app
@@ -43,8 +47,6 @@ app.get('*', (req, res) => {
       )
   }) 
 
-const job = schedule.scheduleJob('40 * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
-});
+
   
  
