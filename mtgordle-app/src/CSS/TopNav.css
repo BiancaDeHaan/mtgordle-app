@@ -1,0 +1,27 @@
+
+
+.title {
+    color: white;
+    margin-top: 0.3em;
+    margin-bottom: 0.3em;
+    font-size: 2.4em;
+}
+
+.top-nav {
+    justify-content: space-evenly;
+    display: flex;
+    align-items: baseline;
+}
+
+.icon {
+    height: 30px;
+    width: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+    margin-top: 0.3em;
+  }
+  
+  .icon:hover,
+  .icon:focus {
+    cursor: pointer;
+  }
