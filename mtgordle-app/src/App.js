@@ -406,7 +406,7 @@ function CardInfo(props) {
       {props.numGuesses >= 5
         ? <div className="row">
           <div className="image-text" onClick={showImage}>Show image</div>
-          {props.numGuesses >= 0 && isOpen && <Popup
+          {(props.numGuesses >= 0 || props.gameOver===true) && isOpen && <Popup
             content={<>
               <img src={image} alt="MTG card"></img>
             </>}
