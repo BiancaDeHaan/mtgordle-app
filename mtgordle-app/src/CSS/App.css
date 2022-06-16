@@ -78,22 +78,6 @@
   background-color: plum;
 }
 
-.row {
-  border: .1em;
-  border-color: white;
-  border-style: solid;
-  padding: .8em;
-  width: 25em;
-  margin: 1em;
-  height: auto;
-  min-height: 2.5em;
-  background-color: #30343d;
-  text-align: left;
-}
-
-.row-guesses {
-  text-align: center;
-}
 
 .image-row {
   padding: .8em;
