@@ -2,7 +2,7 @@ function CurrentGuesses(props) {
     function renderRow(previousGuess) {
   
       return (
-        <div className="row row-guesses">
+        <div className="row">
             {previousGuess===undefined ? 
             <div className="text">???</div> :
             <div className="text">{previousGuess}</div>}
