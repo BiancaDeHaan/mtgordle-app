@@ -24,10 +24,7 @@
 /* Mobile attempts */
 @media screen and (max-width: 1000px) {
     .content {
-        flex-wrap: wrap;
-        display: flex;
-        align-items: baseline;
-        justify-content: space-evenly;
+        display:none;
     }
 
     .row {
@@ -42,4 +39,5 @@
         background-color: #30343d;
         text-align: left;
     }
+    
 }
