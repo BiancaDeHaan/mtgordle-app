@@ -25,7 +25,7 @@ app.get("/card", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
-  const job = schedule.scheduleJob('40 * * * *', function(){
+  const job = schedule.scheduleJob('44 * * * *', function(){
     console.log('The answer to life, the universe, and everything... ugh!');
   });
 });
