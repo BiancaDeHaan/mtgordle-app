@@ -298,7 +298,7 @@ function Game(props) {
       </div>
       <div>
       <div className="card-info">
-        <CardInfo cardInfo={props.cardInfo} numGuesses={numOfGuesses} />
+        <CardInfo cardInfo={props.cardInfo} numGuesses={numOfGuesses} gameOver={gameOver} correctCard={props.correctCard}/>
       </div>
       <div className="current-guesses">
         <CurrentGuesses guesses={guesses} />
@@ -367,28 +367,32 @@ function CardInfo(props) {
   }
 
   let set = "";
-  if (props.numGuesses >= 0 && props.cardInfo && props.cardInfo[0]) {
+  if ((props.numGuesses >= 0 || props.gameOver===true) && props.cardInfo && props.cardInfo[0]) {
     set = props.cardInfo[0];
   }
 
   let type = "";
-  if (props.numGuesses >= 1 && props.cardInfo && props.cardInfo[1])
+  if ((props.numGuesses >= 1 || props.gameOver===true)&& props.cardInfo && props.cardInfo[1])
     type = props.cardInfo[1];
 
   let mana = "";
-  if (props.numGuesses >= 2 && props.cardInfo && props.cardInfo[2])
+  if ((props.numGuesses >= 2 || props.gameOver===true) && props.cardInfo && props.cardInfo[2])
     mana = props.cardInfo[2];
+  else if(props.numGuesses >=2  || props.gameOver===true)
+    mana = "N/A";
 
   let flavor = "";
-  if (props.numGuesses >= 3 && props.cardInfo && props.cardInfo[3])
+  if ((props.numGuesses >= 3 || props.gameOver===true) && props.cardInfo && props.cardInfo[3])
     flavor = props.cardInfo[3];
+  else if(props.numGuesses >=2 || props.gameOver===true)
+    flavor = "N/A";
 
   let text = "";
-  if (props.numGuesses >= 4 && props.cardInfo && props.cardInfo[4])
-    text = props.cardInfo[4];
+  if ((props.numGuesses >= 4 || props.gameOver===true) && props.cardInfo && props.cardInfo[4])
+    text = props.cardInfo[4].replace(props.correctCard, "[redacted]");
 
   let image = "";
-  if (props.numGuesses >= 5 && props.cardInfo && props.cardInfo[5]) {
+  if ((props.numGuesses >= 5 || props.gameOver===true) && props.cardInfo && props.cardInfo[5]) {
     image = props.cardInfo[5];
   }
   return (
