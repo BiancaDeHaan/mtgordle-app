@@ -119,11 +119,14 @@ function Game(props) {
       localStorage.setItem('reset-time', now)
     } else {
       if (Date.parse(now) > Date.parse(resetTime)) {
-
         localStorage.removeItem('guesses');
+        localStorage.setItem('guesses', []);
         localStorage.removeItem('game-win');
+        localStorage.setItem('game-win', false);
         localStorage.removeItem('game-over');
+        localStorage.setItem('game-over', false);
         localStorage.removeItem('num-guesses');
+        localStorage.setItem('num-guesses', 0);
         now.setUTCHours(28, 0, 0, 0);
         localStorage.setItem('reset-time', JSON.stringify(now));
       }
@@ -143,7 +146,7 @@ function Game(props) {
       results = selectedValue;
     }
     else if (searchValue !== "") {
-      await fetch(`https://api.scryfall.com/cards/named?exact=${searchValue.replace(' ', '+')}`)
+      await fetch(`https://api.scryfall.com/cards/named?exact=${searchValue.replaceAll(' ', '+')}`)
         .then(res => res.json())
         .then(
           (result) => {
@@ -389,7 +392,7 @@ function CardInfo(props) {
 
   let text = "";
   if ((props.numGuesses >= 4 || props.gameOver===true) && props.cardInfo && props.cardInfo[4])
-    text = props.cardInfo[4].replace(props.correctCard, "[redacted]");
+    text = props.cardInfo[4].replaceAll(props.correctCard, "[redacted]");
 
   let image = "";
   if ((props.numGuesses >= 5 || props.gameOver===true) && props.cardInfo && props.cardInfo[5]) {
