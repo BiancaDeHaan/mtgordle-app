@@ -138,24 +138,3 @@
 .stat-border {
   border: solid;
 }
-
-/* Mobile attempts */
-@media screen and (max-width: 1000px) {
-  .current-guesses {
-    display: inline-block;
-    margin-left: 1em;
-    margin-right: 1em;
-    vertical-align: top;
-  }
-
-  .card-info {
-    display: inline-block;
-    margin-right: 1em;
-    margin-left: 1em;
-    vertical-align: top;
-  }
-
-  .text {
-    color: red;
-  }
-}
