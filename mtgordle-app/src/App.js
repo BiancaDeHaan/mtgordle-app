@@ -384,7 +384,7 @@ function CardInfo(props) {
   let flavor = "";
   if ((props.numGuesses >= 3 || props.gameOver===true) && props.cardInfo && props.cardInfo[3])
     flavor = props.cardInfo[3];
-  else if(props.numGuesses >=2 || props.gameOver===true)
+  else if(props.numGuesses >=3 || props.gameOver===true)
     flavor = "N/A";
 
   let text = "";
