@@ -25,9 +25,18 @@ app.get("/card", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
-  const job = schedule.scheduleJob('44 * * * *', function(){
-    console.log('The answer to life, the universe, and everything... ugh!');
-  });
+  schedule.scheduleJob('50 * * * *', () => { 
+    // run everyday at midnight
+    fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
+      .then(res => res.json()) 
+      .then(
+        (result) => {
+          card_name = result.name;
+        }
+      );
+      console.log("Resetting the card of the day!");
+  }) 
+
 });
 
 // All other GET requests not handled before will return our React app
@@ -36,6 +45,7 @@ app.get('*', (req, res) => {
   });
 
 
+  /*
   schedule.scheduleJob('0 0 * * *', () => { 
     // run everyday at midnight
     fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
