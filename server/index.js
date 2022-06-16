@@ -25,7 +25,7 @@ app.get("/card", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
-  const job = schedule.scheduleJob('58 * * * *', function(){
+  const job = schedule.scheduleJob('0 0 * * *', function(){
     fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
     .then(res => res.json()) 
     .then(
@@ -33,7 +33,6 @@ app.listen(PORT, () => {
         card_name = result.name;
       }
     );
-    console.log("Testing!");
 });
 });
 
