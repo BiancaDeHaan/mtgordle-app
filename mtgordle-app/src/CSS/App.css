@@ -105,10 +105,6 @@
   cursor: pointer;
 }
 
-.table {
-  display: table;
-}
-
 .stat {
   display: inline-block;
   margin-left: 2em;

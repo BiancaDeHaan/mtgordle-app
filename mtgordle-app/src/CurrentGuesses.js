@@ -10,7 +10,7 @@ function CurrentGuesses(props) {
     }
   
     return (
-      <div className="table">
+      <div>
         <h2 className="header">Guesses</h2>
         {renderRow(props.guesses[0])}
         {renderRow(props.guesses[1])}

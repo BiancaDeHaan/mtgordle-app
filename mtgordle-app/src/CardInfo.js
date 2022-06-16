@@ -50,7 +50,7 @@ function CardInfo(props) {
       image = props.cardInfo[5];
     }
     return (
-      <div className="table">
+      <div>
         <h2 className="header">Information</h2>
         {renderInfo("Set:", set)}
         {renderInfo("Card type:", type)}
