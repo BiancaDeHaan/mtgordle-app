@@ -3,8 +3,9 @@ function CurrentGuesses(props) {
   
       return (
         <div className="row row-guesses">
-
-          <div className="text">{previousGuess}</div>
+            {previousGuess===undefined ? 
+            <div className="text">???</div> :
+            <div className="text">{previousGuess}</div>}
         </div>
       )
     }
