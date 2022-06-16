@@ -1,5 +1,7 @@
-import './App.css';
-import './Popup.css';
+import './CSS/App.css';
+import './CSS/Popup.css';
+import './CSS/TopNav.css';
+import './CSS/Content.css';
 import React, { useState, useEffect } from 'react';
 import { Game } from './Game.js';
 import { TopNav } from './TopNav.js';
