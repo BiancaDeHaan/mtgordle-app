@@ -41,6 +41,9 @@
         min-height: 2.5em;
         background-color: #30343d;
         text-align: left;
-        min-width: 100%
+    }
+
+    .row-guesses {
+        text-align: left;
     }
 }
