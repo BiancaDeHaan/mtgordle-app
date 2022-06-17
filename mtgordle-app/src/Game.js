@@ -75,6 +75,8 @@ function Game(props) {
           localStorage.setItem('num-guesses', 0);
           now.setUTCHours(28, 0, 0, 0);
           localStorage.setItem('reset-time', JSON.stringify(now));
+
+          setGuesses([]);
         }
       }
   
