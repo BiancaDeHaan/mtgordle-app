@@ -66,7 +66,7 @@ function Game(props) {
       } else {
         if (Date.parse(now) > Date.parse(resetTime)) {
           localStorage.removeItem('guesses');
-          localStorage.setItem('guesses', []);
+          localStorage.setItem('guesses', null);
           localStorage.removeItem('game-win');
           localStorage.setItem('game-win', false);
           localStorage.removeItem('game-over');
