@@ -74,9 +74,12 @@ function Game(props) {
           localStorage.removeItem('num-guesses');
           localStorage.setItem('num-guesses', 0);
           now.setUTCHours(28, 0, 0, 0);
-          localStorage.setItem('reset-time', JSON.stringify(now));
+          localStorage.setItem('reset-time', now);
 
+          setNumOfGuesses(0);
           setGuesses([]);
+          setGameOver(false);
+          setGameWin(false);
         }
       }
   
@@ -163,14 +166,14 @@ function Game(props) {
     }
   
     function updateTotalGames() {
-      var initialValue = localStorage.getItem('total-games');
+      var initialValue = JSON.parse(localStorage.getItem('total-games'));
       if (initialValue === null)
         initialValue = 0;
       localStorage.setItem('total-games', JSON.stringify(initialValue + 1));
     }
   
     function updateTotalWins() {
-      var initialValue = localStorage.getItem('total-wins');
+      var initialValue = JSON.parse(localStorage.getItem('total-wins'));
       if (initialValue === null)
         initialValue = 0;
       localStorage.setItem('total-wins', JSON.stringify(initialValue + 1));
