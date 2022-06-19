@@ -57,30 +57,32 @@ function Game(props) {
   
     useEffect(() => {
       var now = new Date();
-      var resetTime = localStorage.getItem('reset-time');
-      console.log(Date.parse(now) > Date.parse(resetTime));
+      var resetTime = localStorage.getItem('time-reset');
+      localStorage.removeItem('reset-time');
+
       if (resetTime === null) {
         // If they've never visited the site before
+        resetLocalStorage();
         now.setUTCHours(28, 0, 0, 0);
-        localStorage.setItem('reset-time', now)
+        localStorage.setItem('time-reset', now)
       } else {
         if (Date.parse(now) > Date.parse(resetTime)) {
-          localStorage.removeItem('guesses');
-          localStorage.setItem('guesses', null);
-          localStorage.removeItem('game-win');
-          localStorage.setItem('game-win', false);
-          localStorage.removeItem('game-over');
-          localStorage.setItem('game-over', false);
-          localStorage.removeItem('num-guesses');
-          localStorage.setItem('num-guesses', 0);
+          resetLocalStorage();
           now.setUTCHours(28, 0, 0, 0);
-          localStorage.setItem('reset-time', now);
+          localStorage.setItem('time-reset', now);
 
           setNumOfGuesses(0);
           setGuesses([]);
           setGameOver(false);
           setGameWin(false);
         }
+      }
+
+      function resetLocalStorage() {
+        localStorage.setItem('guesses', null);
+        localStorage.setItem('game-win', false);
+        localStorage.setItem('game-over', false);
+        localStorage.setItem('num-guesses', 0);
       }
   
     }, []);

@@ -26,6 +26,7 @@ app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
   const job = schedule.scheduleJob('0 0 * * *', function(){
+    console.log("New card update!");
     fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
     .then(res => res.json()) 
     .then(
