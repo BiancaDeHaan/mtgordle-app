@@ -5,7 +5,7 @@ function CardInfo(props) {
     const [isOpen, setIsOpen] = useState(false);
     function renderInfo(label, text) {
       return (
-        <div className="row">
+        <div className="row row-border-reverse">
           <div className="text"><strong>{label}</strong>{" " + text}</div>
         </div>
       )

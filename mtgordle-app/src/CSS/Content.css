@@ -5,9 +5,7 @@
 }
 
 .row {
-    border: .1em;
-    border-color: white;
-    border-style: solid;
+    
     padding: .8em;
     width: 25em;
     margin: 1em;
@@ -21,6 +19,36 @@
     text-align: center;
 }
 
+/*
+border: 16px solid transparent;
+  border-image: linear-gradient(45deg, red , yellow);
+  border-image-slice: 1;
+  height: 120px;
+  border-radius: 10px;  /* will have no effect */
+
+  /*
+  .row-border{
+    border-image: linear-gradient(45deg, red , yellow);
+    border-image-slice: 1;
+    border: .1em;
+    border-style: solid;
+    height: auto;
+  } */
+
+
+.row-border{
+   border: .1em solid transparent;
+    border-image: linear-gradient(45deg, #01aae8 , #14facf);
+    border-image-slice: 1;
+    height: auto;
+  }
+
+  .row-border-reverse {
+    border: .1em solid transparent;
+    border-image: linear-gradient(45deg, #14facf , #01aae8);
+    border-image-slice: 1;
+    height: auto;
+  }
 /* Mobile attempts */
 @media screen and (max-width: 1000px) {
     .content {
