@@ -10,7 +10,7 @@ const app = express();
 
 // https://api.scryfall.com/cards/random?q=f%3Astandard
 
-var card_name = "Sythis Harvest Hand";
+var card_name = "Sythis, Harvest's Hand";
 
 // Have Node serve the files for our built React app
 app.use(express.static(path.resolve(__dirname, '../mtgordle-app/build')));
