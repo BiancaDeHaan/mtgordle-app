@@ -11,7 +11,6 @@ function CardInfo(props) {
       )
     }
   
-  
     function showImage() {
       setIsOpen(true);
     }
@@ -58,8 +57,8 @@ function CardInfo(props) {
         {renderInfo("Flavor text:", flavor)}
         {renderInfo("Card text:", text)}
         {(props.numGuesses >= 5 || props.gameOver===true)
-          ? <div className="row">
-            <div className="image-text" onClick={showImage}>Show image</div>
+          ? <div className="row row-border-reverse">
+            <div className="image-text" onClick={showImage}><strong>Click to show image</strong></div>
             {isOpen && <Popup
               content={<>
                 <img src={image} alt="MTG card"></img>

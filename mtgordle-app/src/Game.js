@@ -259,14 +259,14 @@ function Game(props) {
         {gameOver && isPopupOpen && !gameWin && <SmallPopup
           content={<>
             <b className="popup-title">Better luck next time!</b>
-            <p className="popup-text">The correct answer was {props.correctCard}</p>
+            <p className="popup-text">The correct answer was {props.correctCard}!</p>
           </>}
           handleClose={togglePopup}
         />}
         {gameOver && isPopupOpen && gameWin && <SmallPopup
           content={<>
             <b className="popup-title">Awesome job!</b>
-            <p className="popup-text">The correct answer was {props.correctCard}</p>
+            <p className="popup-text">The correct answer was {props.correctCard}!</p>
           </>}
           handleClose={togglePopup}
         />}

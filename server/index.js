@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require("express");
 //import schedule from 'node-schedule'
-const schedule = require('node-schedule');
+var cron = require('node-cron');
 
 
 const PORT = process.env.PORT || 3001;
@@ -25,8 +25,8 @@ app.get("/card", (req, res) => {
 app.listen(PORT, () => {
   console.log(`Server listening on ${PORT}`);
 
-  const job = schedule.scheduleJob('0 0 * * *', function(){
-    console.log("New card update!");
+  cron.schedule('0 0 * * *', () => {
+    console.log('Updating card at 12:00 EST');
     fetch('https://api.scryfall.com/cards/random?q=f%3Astandard') 
     .then(res => res.json()) 
     .then(
@@ -34,8 +34,12 @@ app.listen(PORT, () => {
         card_name = result.name;
       }
     );
-});
-});
+  }, {
+    scheduled: true,
+    timezone: "America/New_York"
+  }); });
+  
+
 
 // All other GET requests not handled before will return our React app
 app.get('*', (req, res) => {
